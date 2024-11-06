@@ -81,8 +81,7 @@
 
   <div>
     {#each replies as reply}
-      <ReplyCard {reply} />
-      <hr class="border-gray-700" />
+      <ReplyCard organization={data.organization} projectId={data.projectId} {reply} bind:replies />
     {/each}
   </div>
 

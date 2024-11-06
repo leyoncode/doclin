@@ -4,6 +4,7 @@ import { ReplyResponseDTO } from '../types/ReplyResponseDTO';
 import { SnippetRequestDTO } from '../types/SnippetRequestDTO';
 import { ThreadDeleteResponseDTO } from '../types/ThreadDeleteResponseDTO';
 import { AbstracApiService } from './AbstractApiService';
+import { ReplyUpdateDTO } from '../types/ReplyUpdateDTO';
 
 export class ReplyApiService extends AbstracApiService {
   private getBaseReplyUrl(organizationId: string, projectId: number, threadId: number | undefined = undefined): string {
@@ -22,20 +23,7 @@ export class ReplyApiService extends AbstracApiService {
     return response;
   }
 
-  public async updateReply(
-    organizationId: string,
-    projectId: number,
-    replyId: number,
-    threadMessage: string,
-    snippets: SnippetRequestDTO[],
-    delta: any[]
-  ) {
-    const data = {
-      message: threadMessage,
-      snippets: snippets,
-      delta: delta,
-    };
-
+  public async updateReply(organizationId: string, projectId: number, replyId: number, data: ReplyUpdateDTO) {
     const baseReplyUrl = this.getBaseReplyUrl(organizationId, projectId);
     const response: AxiosResponse<ReplyResponseDTO> = await this.axiosInstance.put(`${baseReplyUrl}/${replyId}`, data);
     return response;

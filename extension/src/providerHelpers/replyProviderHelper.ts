@@ -8,6 +8,7 @@ import { ReplyResponseDTO } from '$shared/types/ReplyResponseDTO';
 import { ReplyCreateDTO } from '$shared/types/ReplyCreateDTO';
 import { mapReplyResponseDTOToReply } from '../mappers/replyResponseDTOtoReplyMapper';
 import { ThreadDeleteResponseDTO } from '$shared/types/ThreadDeleteResponseDTO';
+import { ReplyUpdateDTO } from '$shared/types/ReplyUpdateDTO';
 
 export const getRepliesByThreadId = async ({ threadId }: { threadId: number }): Promise<any> => {
   const doclinFile = await readDoclinFile();
@@ -77,14 +78,13 @@ export const updateReply = async ({ replyMessage, replyId, snippets, delta }: Up
     return;
   }
 
-  const response = await apiService.reply.updateReply(
-    organizationId,
-    projectId,
-    replyId,
-    replyMessage,
+  const data: ReplyUpdateDTO = {
+    message: replyMessage,
     snippets,
-    delta
-  );
+    delta,
+  };
+
+  const response = await apiService.reply.updateReply(organizationId, projectId, replyId, data);
 
   const replyDTO: ReplyResponseDTO = response?.data;
   const reply: Reply = await mapReplyResponseDTOToReply(replyDTO);

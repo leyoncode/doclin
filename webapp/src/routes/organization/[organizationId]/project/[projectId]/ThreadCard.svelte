@@ -61,7 +61,7 @@
   <p class="text-sm text-gray-300 mt-2">{cleanAndTruncate(thread.message, TRUNCATE_LENGTH)}</p>
 
   {#if thread.replyCount > 0}
-    <div class="items-center p-2 mt-2 border border-gray-700 hover:bg-gray-800 rounded text-xs text-gray-300">
+    <div class="items-center p-2 mt-2 border border-gray-700 rounded text-xs text-gray-300">
       <span class="text-blue-400">
         {thread.replyCount}
         {thread.replyCount === 1 ? 'Reply' : 'Replies'}
