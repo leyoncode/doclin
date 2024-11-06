@@ -111,7 +111,8 @@ export class TextEditor {
       } else {
         throw new Error('Invalid data type. Expected string or object.');
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      console.log(error);
       return null;
     }
   }

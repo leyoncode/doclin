@@ -41,7 +41,7 @@
   project={data.project}
   organizationId={data.organizationId}
   {searchThreads}
-  searchQuery={data.searchQuery}
+  searchQuery={data.searchQuery ?? ''}
 />
 
 <div class="px-4 pt-4 flex justify-center">
