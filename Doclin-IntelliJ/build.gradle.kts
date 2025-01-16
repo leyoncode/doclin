@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
     id("org.jetbrains.intellij") version "1.17.4"
+    kotlin("plugin.serialization") version "2.1.0" // Kotlin serialization Gradle plugin
 }
 
 group = "com.doclin"
@@ -54,4 +55,7 @@ dependencies {
     // JSON support for API communication
     implementation("io.ktor:ktor-client-content-negotiation:3.0.3")
     implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.3")
+
+    // JSON serialization library dependency
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 }
